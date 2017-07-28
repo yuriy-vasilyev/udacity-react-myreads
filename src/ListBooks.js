@@ -2,52 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book.js'
 import PropTypes from 'prop-types'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 
 class ListBooks extends Component {
-
-  constructor( props ) {
-  	super( props );
-  	// this.clearQuery = this.clearQuery.bind( this );
-  }
 
   static propTypes = {
     books: PropTypes.array.isRequired
   }
 
-  state = {
-    query: ''
-  }
-
-  updateQuery( query ) {
-    this.setState({
-      query: query.trim()
-    });
-  }
-
-  clearQuery() {
-    this.setState({
-      query: ''
-    });
-  }
-
   render() {
-
-    // const { books, onRemoveContact } = this.props;
-    // const { query } = this.state;
-    //
-    // let showingBooks;
-    //
-    // if ( query ) {
-    //   const match = new RegExp( escapeRegExp( query ), 'i' );
-    //   showingBooks = contacts.filter( contact => match.test( contact.name ) );
-    // } else {
-    //   showingBooks = contacts;
-    // }
-
-    // showingBooks.sort( sortBy( 'name' ) );
-
     const { books } = this.props;
 
     return (

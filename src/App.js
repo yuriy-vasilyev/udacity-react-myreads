@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom'
+import SearchBooks from './SearchBooks'
 import ListBooks from './ListBooks'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
@@ -11,7 +12,7 @@ class BooksApp extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then( books => {
-      console.dir(books);
+      // console.dir(books);
       this.setState({ books });
     })
   }
@@ -34,25 +35,11 @@ class BooksApp extends Component {
     return (
       <div className="app">
         <Route exact path="/" render={ () => (
-              <ListBooks books={ this.state.books } onChangeShelf={ this.handleChangeShelf } />
-            )
-          }
-        />
+          <ListBooks books={ this.state.books } onChangeShelf={ this.handleChangeShelf } />
+        )}/>
         <Route path="/search" render={ () => (
-              <div className="search-books">
-                <div className="search-books-bar">
-                  <Link to="/" className="close-search">Close</Link>
-                  <div className="search-books-input-wrapper">
-                    <input type="text" placeholder="Search by title or author"/>
-                  </div>
-                </div>
-                <div className="search-books-results">
-                  <ol className="books-grid"></ol>
-                </div>
-              </div>
-            )
-          }
-        />
+          <SearchBooks books={ this.state.books } onChangeShelf={ this.handleChangeShelf } />
+        )}/>
       </div>
     )
   }
