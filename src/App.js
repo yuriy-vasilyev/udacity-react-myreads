@@ -18,15 +18,29 @@ class BooksApp extends Component {
   }
 
   handleChangeShelf = ( book, shelf ) => {
+    let isNewBook = true;
+
     this.setState({
       books: this.state.books.map( item => {
         if ( item.id === book.id ) {
-          item.shelf = shelf
+          item.shelf = shelf;
+          isNewBook  = false;
         }
 
         return item;
       })
     });
+
+    if ( isNewBook ) {
+      book.shelf = shelf;
+      this.setState( prevState => {
+        let newBooks = prevState.books;
+        newBooks.push( book );
+        return {
+          books: newBooks
+        }
+      });
+    }
 
     BooksAPI.update( book, shelf );
   }
