@@ -6,17 +6,26 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BooksApp extends Component {
+  
   state = {
-    books: []
+    books: [] // collect my current books on shelves
   }
 
   componentDidMount() {
+
+    // Update the state pulling books using Books API
     BooksAPI.getAll().then( books => {
-      // console.dir(books);
       this.setState({ books });
     })
   }
 
+  /**
+   * Changes book shelf in the current state and on the server
+   *
+   * @param {object} book Book object received from Books API
+   * @param {sting} shelf  Name of shelf
+   * @return undefined
+   */
   handleChangeShelf = ( book, shelf ) => {
     let isNewBook = true;
 

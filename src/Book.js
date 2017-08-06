@@ -4,20 +4,24 @@ import PropTypes from 'prop-types'
 class Book extends Component {
 
     static propTypes = {
-      book: PropTypes.object.isRequired
+      book: PropTypes.object.isRequired,
+      onChangeShelf: PropTypes.func.isRequired
     }
 
     render() {
 
       const { book, onChangeShelf } = this.props;
 
+      // Init default empty values
       let authors = ['Uknown Author'],
           smallThumbnail = 'no_book_cover.jpg';
 
+      // Replace with real authors data if provided
       if ( book.hasOwnProperty( 'authors' ) ) {
         authors = book.authors;
       }
 
+      // Replace with real thumb image if provided
       if ( book.hasOwnProperty( 'imageLinks' ) ) {
         smallThumbnail = book.imageLinks.smallThumbnail;
       }
